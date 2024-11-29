@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await axios.post('http://localhost:7001/api/auth/login', { username, password });
+      const response = await axios.post('https://vrv-backend-internship-dashboard.onrender.com/api/auth/login', { username, password });
       const token = response.data.token;
       localStorage.setItem('token', token);
       
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, password, role) => {
     try {
-      await axios.post('http://localhost:7001/api/auth/register', { username, password, role });
+      await axios.post('https://vrv-backend-internship-dashboard.onrender.com/api/auth/register', { username, password, role });
       return true;
     } catch (error) {
       console.error('Registration error:', error);
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const token = localStorage.getItem('token');
       if (token) {
-        await axios.post('/api/auth/logout', {}, {
+        await axios.post('https://vrv-backend-internship-dashboard.onrender.com/api/auth/logout', {}, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }
